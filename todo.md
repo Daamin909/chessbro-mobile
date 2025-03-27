@@ -1,0 +1,7 @@
+- Design UI
+    - Make logo
+    - choose color theme
+- work out routing 
+- Convert stockfish usage to use NPM package
+- work out chessboard.js
+- fix accuracy algorithm
