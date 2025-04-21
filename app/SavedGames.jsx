@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
+import GameBox from "../src/components/Games/GameBox";
 
 const savedGames = () => {
   return (
     <View style={styles.savedGames}>
-      <Text>savedGames</Text>
+      <GameBox />
     </View>
   );
 };

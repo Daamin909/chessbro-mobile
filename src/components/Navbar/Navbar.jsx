@@ -1,4 +1,3 @@
-import { useFonts } from "expo-font";
 import { Image, StyleSheet, Text, View } from "react-native";
 const logo = require("../../../assets/branding/logo.png");
 
@@ -13,12 +12,22 @@ const Navbar = () => {
 
 const styles = StyleSheet.create({
   logo: {
-    height: 100,
+    height: 40,
+    width: 40,
     resizeMode: "contain",
   },
   logo_heading: {
     color: "#F6D003",
     fontWeight: "bold",
+    fontFamily: "Boldonse",
+    fontSize: 32
+  },
+  navbar: {
+    display: "flex",
+    justifyContent: "start",
+    alignItems: "center",
+    height: 60,
+    flexDirection: "row"
   },
 });
 

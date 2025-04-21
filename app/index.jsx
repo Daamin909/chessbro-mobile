@@ -1,10 +1,9 @@
-import { StyleSheet, Text, SafeAreaView } from "react-native";
-import Navbar from "../src/components/Navbar/Navbar";
+import { StyleSheet, SafeAreaView, Text } from "react-native";
 
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Navbar />
+      <Text>Home</Text>
     </SafeAreaView>
   );
 };
