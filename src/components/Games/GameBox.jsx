@@ -1,11 +1,10 @@
-import { StyleSheet, View } from "react-native";
-import ChessBoard from "react-native-chessboard";
+import { StyleSheet, View, Text } from "react-native";
 
-const GameBox = () => (
-  <View style={styles.gamebox}>
-    <ChessBoard />
-  </View>
-);
+const GameBox = () => {
+  return <View style={styles.gamebox}>
+    <Text>GameBox</Text>
+  </View>;
+};
 export default GameBox;
 
 const styles = StyleSheet.create({

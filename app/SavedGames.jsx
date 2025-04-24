@@ -1,16 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
-import GameBox from "../src/components/Games/GameBox";
 
-const savedGames = () => {
+const SavedGames = () => {
   return (
-    <View style={styles.savedGames}>
-      <GameBox />
+    <View style={styles.SavedGames}>
+      <Text>SavedGames</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  savedGames: {},
+  SavedGames: {},
 });
 
-export default savedGames;
+export default SavedGames;

@@ -12,22 +12,23 @@ const Navbar = () => {
 
 const styles = StyleSheet.create({
   logo: {
-    height: 40,
-    width: 40,
+    height: 50,
+    width: 36,
+    marginHorizontal: 10,
     resizeMode: "contain",
   },
   logo_heading: {
-    color: "#F6D003",
+    color: "#E3EEF4",
     fontWeight: "bold",
-    fontFamily: "Boldonse",
-    fontSize: 32
+    fontSize: 45,
   },
   navbar: {
     display: "flex",
     justifyContent: "start",
     alignItems: "center",
     height: 60,
-    flexDirection: "row"
+    backgroundColor: "#072434",
+    flexDirection: "row",
   },
 });
 
