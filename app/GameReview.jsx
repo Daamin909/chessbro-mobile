@@ -1,17 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Input from "../src/components/Input/Input";
 import Board from "../src/components/Board/Board";
 import Controls from '../src/components/Input/Controls';
 
 const GameReview = () => {
   return (
-    <View style={styles.gameReview}>
+    <ScrollView contentContainerStyle={styles.gameReview}>
       <Input />
       <View style={styles.boardContainer}>
         <Board />
       </View>
       <Controls />
-    </View>
+    </ScrollView>
   );
 };
 

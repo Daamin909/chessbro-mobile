@@ -1,12 +1,12 @@
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useState } from "react";
-import { Picker } from "@react-native-picker/picker";
-import Button from "../../common/Button/Button";
 import { RFValue } from "react-native-responsive-fontsize";
+import { Button, Menu, TextInput } from "react-native-paper";
 
 const Input = () => {
   const [option, setOption] = useState("chess.com");
   const [input, setInput] = useState("");
+  const [menuVisible, setMenuVisible] = useState(false);
   const onPress = (e) => {
     console.log(option, input);
   };
@@ -14,62 +14,81 @@ const Input = () => {
     <View style={styles.inputContainer}>
       <View style={styles.optionsContainer}>
         <TextInput
-          placeholder={option === "pgn" ? "Enter PGN" : "Enter Username"}
-          style={styles.text}
-          multiline={option === "pgn"}
+          label={option === "chess.com" ? "Username" : "PGN"}
+          placeholder={option === "chess.com" ? "Enter username" : "Enter PGN"}
           value={input}
-          numberOfLines={2}
-          onChangeText={setInput}
+          mode="outlined"
+          onChangeText={(text) => setInput(text)}
+          multiline={option === "pgn"}
+          numberOfLines={1}
           placeholderTextColor="#bec8cd"
-          maxLength={25}
+          maxLength={option === "chess.com" ? 25 : 10000000000}
+          style={{ width: "50%" }}
+          activeOutlineColor="#bec8cd"
+          outlineColor="#bec8cd"
+          textColor="#e3eef4"
+          autoCorrect={false}
         />
-        <View style={styles.dropdownHolder}>
-          <Picker
-            selectedValue={option}
-            onValueChange={(value) => setOption(value)}
-            dropdownIconColor={"#e3eef4"}
-            selectionColor="black"
-            mode="dropdown"
-          >
-            <Picker.Item
-              label="chess.com"
-              value="chess.com"
-              style={styles.dropdownHolder}
-            />
-            <Picker.Item
-              label="PGN"
-              value="pgn"
-              style={styles.dropdownHolder}
-            />
-          </Picker>
-        </View>
+        <Menu
+          visible={menuVisible}
+          onDismiss={() => setMenuVisible(false)}
+          anchor={
+            <Button
+              icon={option === "chess.com" ? "chess-pawn" : "text-box-multiple"}
+              mode="outlined"
+              onPress={() => setMenuVisible(true)}
+              textColor="#e3eef4"
+            >
+              {option === "pgn" ? "PGN" : option}
+            </Button>
+          }
+          theme={{ colors: { onSurfaceVariant: "#000" } }}
+        >
+          <Menu.Item
+            onPress={() => {
+              setOption("chess.com");
+              setMenuVisible(false);
+            }}
+            title="chess.com"
+            leadingIcon={"chess-pawn"}
+            theme={{ colors: { onSurfaceVariant: "#000" } }}
+          />
+          <Menu.Item
+            onPress={() => {
+              setOption("pgn");
+              setMenuVisible(false);
+            }}
+            title="PGN"
+            leadingIcon={"text-box-multiple"}
+            theme={{ colors: { onSurfaceVariant: "#000" } }}
+          />
+        </Menu>
       </View>
-      <Button
-        onPress={onPress}
-        styles={styles.submitButton}
-        title="Review Game!"
-        containerStyles={styles.mainView}
-      />
+      <Button icon="magnify" mode="elevated" onPress={onPress}>
+        Review game
+      </Button>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   inputContainer: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     margin: "3%",
+    width: "100%",
   },
   optionsContainer: {
-    backgroundColor: "#072434",
     color: "#E3EEF4",
     display: "flex",
-    justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
     paddingHorizontal: "1%",
-    borderRadius: 10,
-    marginVertical: "2%",
+    marginTop: "2%",
+    marginBottom: "4%",
+    justifyContent: "space-around",
+    width: "100%",
   },
   text: {
     color: "#E3EEF4",
