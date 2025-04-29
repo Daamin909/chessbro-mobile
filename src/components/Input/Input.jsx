@@ -2,6 +2,7 @@ import { View, StyleSheet } from "react-native";
 import { useState } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Button, Menu, TextInput } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 const Input = () => {
   const [option, setOption] = useState("chess.com");
@@ -9,6 +10,13 @@ const Input = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const onPress = (e) => {
     console.log(option, input);
+    if (input.trim().length === 0) {
+      Toast.show({
+        type: "error",
+        text1: `Invalid ${option === "chess.com" ? "username" : "PGN"}`,
+        text2: `Enter a valid ${option === "chess.com" ? "username" : "PGN"}`,
+      });
+    }
   };
   return (
     <View style={styles.inputContainer}>
@@ -76,7 +84,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    margin: "3%",
+    marginVertical: "8%",
     width: "100%",
   },
   optionsContainer: {

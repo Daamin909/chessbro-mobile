@@ -13,6 +13,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { useEffect } from "react";
 import { DefaultTheme, PaperProvider } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 async function lockOrientation() {
   await ScreenOrientation.unlockAsync();
@@ -109,6 +110,7 @@ const _layout = () => {
                 }}
               />
             </Tabs>
+            <Toast />
           </PaperProvider>
         </SafeAreaView>
       </SafeAreaProvider>

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#064162",
     display: "flex",
     width: "100%",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "#e3eef4",
     borderRadius: 10,
+    marginVertical: "5%"
   },
 });
 
