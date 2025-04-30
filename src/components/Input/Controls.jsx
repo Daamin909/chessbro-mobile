@@ -11,9 +11,26 @@ import {
 import { RFValue } from "react-native-responsive-fontsize";
 import Button from "../../common/Button/Button";
 
-const Controls = () => {
+const Controls = ({ moveNumber, setMoveNumber, numberOfMoves }) => {
   const onPress = (index) => {
-    console.log(index);
+    switch (index) {
+      case 0:
+        break;
+      case 1:
+        setMoveNumber(0);
+        break;
+      case 2:
+        if (moveNumber !== 0) {
+          setMoveNumber(moveNumber - 1);
+        }
+        break;
+      case 3:
+        if (moveNumber !== numberOfMoves - 1) {
+          setMoveNumber(moveNumber + 1);
+        }
+      case 4:
+        setMoveNumber(numberOfMoves - 1);
+    }
   };
   return (
     <View style={styles.controls}>

@@ -5,7 +5,8 @@ import {
   ReanimatedLogLevel,
 } from "react-native-reanimated";
 
-const Board = () => {
+const Board = ({ currentFEN }) => {
+  console.log(currentFEN);
   configureReanimatedLogger({
     level: ReanimatedLogLevel.error,
     strict: false,

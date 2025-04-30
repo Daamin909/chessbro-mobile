@@ -3,19 +3,31 @@ import { useState } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Button, Menu, TextInput } from "react-native-paper";
 import Toast from "react-native-toast-message";
+import validatePGN, { invalidPGN } from "../../scripts/fetch/validatePGN";
+import reviewGame from "../../scripts/fetch/reviewGame";
 
-const Input = () => {
-  const [option, setOption] = useState("chess.com");
+const Input = (setPGN) => {
+  const [option, setOption] = useState("pgn");
   const [input, setInput] = useState("");
   const [menuVisible, setMenuVisible] = useState(false);
-  const onPress = (e) => {
-    console.log(option, input);
+  const onPress = async (e) => {
     if (input.trim().length === 0) {
       Toast.show({
         type: "error",
         text1: `Invalid ${option === "chess.com" ? "username" : "PGN"}`,
         text2: `Enter a valid ${option === "chess.com" ? "username" : "PGN"}`,
       });
+      return;
+    }
+    if (option === "pgn") {
+      const isValidPGN = validatePGN(input);
+      if (!isValidPGN) {
+        invalidPGN();
+        return;
+      }
+      const reply = await reviewGame(input);
+      setPGN(reply);
+      console.log(reply);
     }
   };
   return (
