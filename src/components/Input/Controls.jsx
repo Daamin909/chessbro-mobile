@@ -28,8 +28,13 @@ const Controls = ({ moveNumber, setMoveNumber, numberOfMoves }) => {
         if (moveNumber !== numberOfMoves - 1) {
           setMoveNumber(moveNumber + 1);
         }
+        break;
       case 4:
         setMoveNumber(numberOfMoves - 1);
+        break;
+      case 5:
+        // write code for board flip
+        break;
     }
   };
   return (
