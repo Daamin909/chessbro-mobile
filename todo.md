@@ -13,8 +13,18 @@
   - [x] colors
   - [ ] piece theme
 
-- [ ] input username + pgn
+- [x] input username + pgn
 
 - [ ] GIF based thumbnails for Saved Games
 
-- 
+- [ ] move quality amount panel 
+  - [ ] main container
+  - [ ] move label + imgs
+  - [ ] quantity
+
+- [ ] move info
+  - [ ] current move quality
+  - [ ] current move opening
+
+- [ ] hide input panel on game review
+

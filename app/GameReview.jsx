@@ -3,6 +3,7 @@ import Input from "../src/components/Input/Input";
 import Board from "../src/components/Board/Board";
 import Controls from "../src/components/Input/Controls";
 import { useEffect, useState } from "react";
+import EvalBar from "../src/components/Evaluation/EvalBar";
 
 const GameReview = () => {
   const [PGN, setPGN] = useState({
@@ -48,6 +49,10 @@ const GameReview = () => {
       },
     },
   });
+  const evaluation = {
+    type: "cp",
+    value: 180,
+  };
   const [moveNumber, setMoveNumber] = useState(0);
   const [currentFEN, setCurrentFEN] = useState("");
   useEffect(() => {
@@ -60,6 +65,7 @@ const GameReview = () => {
     <ScrollView contentContainerStyle={styles.gameReview}>
       <Input setPGN={setPGN} />
       <View style={styles.boardContainer}>
+        <EvalBar evaluation={evaluation} />
         <Board currentFEN={currentFEN} />
       </View>
       <Controls
@@ -82,12 +88,8 @@ const styles = StyleSheet.create({
   },
   boardContainer: {
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
-    borderWidth: 3,
-    borderColor: "#e3eef4",
-    borderRadius: 10,
-    marginVertical: "5%",
+    flexDirection: "row",
   },
 });
 

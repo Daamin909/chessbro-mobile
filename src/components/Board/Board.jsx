@@ -27,7 +27,7 @@ const Board = ({ currentFEN }) => {
         white: "#E3EEF4",
         black: "#072434",
       }}
-      boardSize={Math.floor(SCREEN_WIDTH / 8) * 7}
+      boardSize={Math.floor(SCREEN_WIDTH / 40) * 39}
     />
   );
 };
