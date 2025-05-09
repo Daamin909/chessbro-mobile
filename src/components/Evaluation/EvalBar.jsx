@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import useScreen from "../../hooks/useScreen";
+import roundToHundredth from "../../common/funcs/roundToHundredth";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const sigmoidAlgorithm = (cp) => {
   let newCP = Math.max(-1000, Math.min(1000, cp));
-  let scale = newCP / 225;
+  let scale = newCP / 153;
   let sigmoid = 1 / (1 + Math.exp(-scale));
   let percent = sigmoid * 100;
   let top = 100 - percent;
@@ -54,7 +56,7 @@ const EvalBar = ({ evaluation }) => {
       justifyContent: "flex-end",
     },
     evalValue: {
-      fontSize: 15,
+      fontSize: RFValue(8),
       textAlign: "center",
     },
   });
@@ -62,11 +64,13 @@ const EvalBar = ({ evaluation }) => {
     <View style={styles.evalbar}>
       <View style={styles.top}>
         <Text style={{ color: "white", ...styles.evalValue }}>
-          {value <= 0 && Math.abs(value / 100)}
+          {value <= 0 && roundToHundredth(Math.abs(value / 100))}
         </Text>
       </View>
       <View style={styles.bottom}>
-        <Text style={styles.evalValue}>{value >= 0 && value / 100}</Text>
+        <Text style={styles.evalValue}>
+          {value >= 0 && roundToHundredth(value / 100)}
+        </Text>
       </View>
     </View>
   );

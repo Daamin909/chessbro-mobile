@@ -17,6 +17,8 @@
 
 - [ ] GIF based thumbnails for Saved Games
 
+- [x] eval bar
+
 - [ ] move quality amount panel 
   - [ ] main container
   - [ ] move label + imgs

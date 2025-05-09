@@ -5,6 +5,7 @@ import {
   ReanimatedLogLevel,
 } from "react-native-reanimated";
 import { useEffect, useRef } from "react";
+import { View } from "react-native";
 
 const Board = ({ currentFEN }) => {
   configureReanimatedLogger({
@@ -20,15 +21,17 @@ const Board = ({ currentFEN }) => {
     changePos();
   }, [currentFEN]);
   return (
-    <ChessBoard
-      ref={chessboardRef}
-      gestureEnabled={false}
-      colors={{
-        white: "#E3EEF4",
-        black: "#072434",
-      }}
-      boardSize={Math.floor(SCREEN_WIDTH / 40) * 39}
-    />
+    <View>
+      <ChessBoard
+        ref={chessboardRef}
+        gestureEnabled={false}
+        colors={{
+          white: "#E3EEF4",
+          black: "#072434",
+        }}
+        boardSize={Math.floor(SCREEN_WIDTH / 40) * 39}
+      />
+    </View>
   );
 };
 

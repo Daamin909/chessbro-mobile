@@ -4,6 +4,8 @@ import Board from "../src/components/Board/Board";
 import Controls from "../src/components/Input/Controls";
 import { useEffect, useState } from "react";
 import EvalBar from "../src/components/Evaluation/EvalBar";
+import QualityStats from "../src/components/Review/QualityStats";
+import Opening from "../src/components/Review/Opening";
 
 const GameReview = () => {
   const [PGN, setPGN] = useState({
@@ -17,15 +19,13 @@ const GameReview = () => {
     move_evaluations: [
       {
         fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-      },
-      {
-        fen: "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1",
-      },
-      {
-        fen: "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq d6 0 2",
-      },
-      {
-        fen: "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq c3 0 2",
+        opening: "Starting Position",
+        eval: {
+          type: "cp",
+          value: "0.3",
+        },
+        move_type: null,
+        move: null,
       },
     ],
     number_of_move_types: {
@@ -49,23 +49,48 @@ const GameReview = () => {
       },
     },
   });
-  const evaluation = {
+  const [evaluation, setEvaluation] = useState({
     type: "cp",
-    value: 180,
-  };
+    value: 0,
+  });
+  const [underReview, setUnderReview] = useState(false);
   const [moveNumber, setMoveNumber] = useState(0);
   const [currentFEN, setCurrentFEN] = useState("");
   useEffect(() => {
     try {
       setCurrentFEN(PGN.move_evaluations[moveNumber].fen);
+      setEvaluation(PGN.move_evaluations[moveNumber].eval);
     } catch {}
   }, [PGN, moveNumber]);
-
   return (
     <ScrollView contentContainerStyle={styles.gameReview}>
-      <Input setPGN={setPGN} />
+      {!underReview && (
+        <Input
+          setPGN={setPGN}
+          setUnderReview={setUnderReview}
+          setMoveNumber={setMoveNumber}
+        />
+      )}
+      {underReview && (
+        <>
+          <Opening openingName={PGN.move_evaluations[moveNumber].opening} />
+          <QualityStats
+            moveType={PGN.move_evaluations[moveNumber].move_type}
+            move={PGN.move_evaluations[moveNumber].move}
+          />
+        </>
+      )}
       <View style={styles.boardContainer}>
-        <EvalBar evaluation={evaluation} />
+        <EvalBar
+          evaluation={
+            evaluation.type === "cp"
+              ? {
+                  type: evaluation.type,
+                  value: evaluation.value * 100,
+                }
+              : evaluation
+          }
+        />
         <Board currentFEN={currentFEN} />
       </View>
       <Controls
