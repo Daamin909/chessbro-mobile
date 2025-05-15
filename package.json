@@ -9,6 +9,9 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/nova-round": "^0.3.0",
+    "@expo-google-fonts/varela-round": "^0.3.0",
+    "@expo-google-fonts/winky-rough": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
@@ -27,6 +30,7 @@
     "react": "18.3.1",
     "react-native": "0.76.7",
     "react-native-chessboard": "^0.1.2",
+    "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-paper": "^5.13.4",
     "react-native-reanimated": "~3.16.1",

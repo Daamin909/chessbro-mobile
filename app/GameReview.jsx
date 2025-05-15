@@ -1,20 +1,38 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
 import Input from "../src/components/Input/Input";
 import Board from "../src/components/Board/Board";
 import Controls from "../src/components/Input/Controls";
-import { useEffect, useState } from "react";
 import EvalBar from "../src/components/Evaluation/EvalBar";
 import QualityStats from "../src/components/Review/QualityStats";
 import Opening from "../src/components/Review/Opening";
+import ReportCard from "../src/components/Review/ReportCard";
 
 const GameReview = () => {
   const [PGN, setPGN] = useState({
-    accuracy: { black: 0, white: 0 },
-    info: {
-      black_player: "Black",
-      black_rating: "??",
-      white_player: "White",
-      white_rating: "??",
+    accuracy: {
+      black: 0,
+      white: 0,
+    },
+    number_of_move_types: {
+      w: {
+        best_move: "??",
+        blunder: "??",
+        book_move: "??",
+        excellent: "??",
+        good: "??",
+        inaccuracy: "??",
+        mistake: "??",
+      },
+      b: {
+        best_move: "??",
+        blunder: "??",
+        book_move: "??",
+        excellent: "??",
+        good: "??",
+        inaccuracy: "??",
+        mistake: "??",
+      },
     },
     move_evaluations: [
       {
@@ -28,32 +46,18 @@ const GameReview = () => {
         move: null,
       },
     ],
-    number_of_move_types: {
-      b: {
-        best_move: null,
-        blunder: null,
-        book_move: null,
-        excellent: null,
-        good: null,
-        inaccuracy: null,
-        mistake: null,
-      },
-      w: {
-        best_move: null,
-        blunder: null,
-        book_move: null,
-        excellent: null,
-        good: null,
-        inaccuracy: null,
-        mistake: null,
-      },
+    info: {
+      white_player: "White",
+      black_player: "Black",
+      white_rating: "??",
+      black_rating: "??",
     },
   });
   const [evaluation, setEvaluation] = useState({
     type: "cp",
     value: 0,
   });
-  const [underReview, setUnderReview] = useState(false);
+  const [underReview, setUnderReview] = useState(true);
   const [moveNumber, setMoveNumber] = useState(0);
   const [currentFEN, setCurrentFEN] = useState("");
   useEffect(() => {
@@ -73,6 +77,7 @@ const GameReview = () => {
       )}
       {underReview && (
         <>
+          <ReportCard move_numbers={PGN.number_of_move_types} />
           <Opening openingName={PGN.move_evaluations[moveNumber].opening} />
           <QualityStats
             moveType={PGN.move_evaluations[moveNumber].move_type}
@@ -107,7 +112,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#064162",
     display: "flex",
     width: "100%",
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },

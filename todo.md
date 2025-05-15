@@ -30,3 +30,5 @@
 
 - [ ] hide input panel on game review
 
+- [ ] loading screen
+

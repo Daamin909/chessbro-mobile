@@ -27,7 +27,16 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "node_modules/@expo-google-fonts/varela-round/",
+            "node_modules/@expo-google-fonts/nova-round/",
+            "node_modules/@expo-google-fonts/winky-rough/WinkyRough_700Bold.ttf"
+          ]
+        }
+      ],
       [
         "expo-screen-orientation",
         {
