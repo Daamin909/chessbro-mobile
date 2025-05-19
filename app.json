@@ -20,7 +20,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/branding/logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.daamin101.chessbro"
     },
     "web": {
       "favicon": "./assets/branding/logo.png"
@@ -31,9 +32,9 @@
         "expo-font",
         {
           "fonts": [
-            "node_modules/@expo-google-fonts/varela-round/",
-            "node_modules/@expo-google-fonts/nova-round/",
-            "node_modules/@expo-google-fonts/winky-rough/WinkyRough_700Bold.ttf"
+            "node_modules/@expo-google-fonts/varela-round/400Regular/VarelaRound_400Regular.ttf",
+            "node_modules/@expo-google-fonts/nova-round/400Regular/NovaRound_400Regular.ttf",
+            "node_modules/@expo-google-fonts/winky-rough/700Bold/WinkyRough_700Bold.ttf"
           ]
         }
       ],
@@ -43,6 +44,15 @@
           "initialOrientation": "PORTRAIT_UP"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "8422afe6-ea5a-4d62-902c-ddffbd46d706"
+      }
+    },
+    "owner": "daamin101"
   }
 }

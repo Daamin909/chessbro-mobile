@@ -16,22 +16,22 @@ const GameReview = () => {
     },
     number_of_move_types: {
       w: {
-        best_move: "??",
-        blunder: "??",
-        book_move: "??",
-        excellent: "??",
-        good: "??",
-        inaccuracy: "??",
-        mistake: "??",
+        best_move: "0",
+        blunder: "0",
+        book_move: "0",
+        excellent: "0",
+        good: "0",
+        inaccuracy: "0",
+        mistake: "0",
       },
       b: {
-        best_move: "??",
-        blunder: "??",
-        book_move: "??",
-        excellent: "??",
-        good: "??",
-        inaccuracy: "??",
-        mistake: "??",
+        best_move: "0",
+        blunder: "0",
+        book_move: "0",
+        excellent: "0",
+        good: "0",
+        inaccuracy: "0",
+        mistake: "0",
       },
     },
     move_evaluations: [
@@ -49,15 +49,15 @@ const GameReview = () => {
     info: {
       white_player: "White",
       black_player: "Black",
-      white_rating: "??",
-      black_rating: "??",
+      white_rating: "0",
+      black_rating: "0",
     },
   });
   const [evaluation, setEvaluation] = useState({
     type: "cp",
     value: 0,
   });
-  const [underReview, setUnderReview] = useState(true);
+  const [underReview, setUnderReview] = useState(false);
   const [moveNumber, setMoveNumber] = useState(0);
   const [currentFEN, setCurrentFEN] = useState("");
   useEffect(() => {
@@ -79,10 +79,12 @@ const GameReview = () => {
         <>
           <ReportCard move_numbers={PGN.number_of_move_types} />
           <Opening openingName={PGN.move_evaluations[moveNumber].opening} />
-          <QualityStats
-            moveType={PGN.move_evaluations[moveNumber].move_type}
-            move={PGN.move_evaluations[moveNumber].move}
-          />
+          {PGN.move_evaluations[moveNumber].move_type && (
+            <QualityStats
+              moveType={PGN.move_evaluations[moveNumber].move_type}
+              move={PGN.move_evaluations[moveNumber].move}
+            />
+          )}
         </>
       )}
       <View style={styles.boardContainer}>
@@ -114,6 +116,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+    flex: 1,
   },
   boardContainer: {
     display: "flex",

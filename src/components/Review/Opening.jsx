@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     margin: RFValue(20),
   },
   openingText: {
-    fontSize: RFValue(18),
+    fontSize: RFValue(12),
     color: "#e3eef4",
     marginHorizontal: 5,
   },

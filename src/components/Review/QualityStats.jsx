@@ -45,9 +45,7 @@ const QualityStats = ({ moveType, move }) => {
       {moveType && (
         <Image source={moveTypeImage} style={styles.moveQualityImg} />
       )}
-      <Text style={styles.moveQualityText}>
-        {moveType ? `${move} is ${moveTypeText}` : "Start Reviewing!"}
-      </Text>
+      <Text style={styles.moveQualityText}>{`${move} is ${moveTypeText}`}</Text>
     </View>
   );
 };
