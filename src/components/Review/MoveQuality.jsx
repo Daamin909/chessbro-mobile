@@ -35,7 +35,7 @@ const MoveQuality = ({ name, image, numberW, numberB }) => {
   });
   return (
     <View style={styles.moveQuality}>
-      <Text style={styles.text}>{name}</Text>
+      <Text style={{ ...styles.text, ...{ fontWeight: 500 } }}>{name}</Text>
       <View style={styles.numbers}>
         <Text
           style={{

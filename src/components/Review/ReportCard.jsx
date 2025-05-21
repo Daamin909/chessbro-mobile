@@ -58,5 +58,8 @@ const ReportCard = ({ move_numbers }) => {
   );
 };
 const styles = StyleSheet.create({
+  container: {
+    marginVertical: RFValue(10),
+  },
 });
 export default ReportCard;

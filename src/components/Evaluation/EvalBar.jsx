@@ -56,7 +56,7 @@ const EvalBar = ({ evaluation }) => {
       justifyContent: "flex-end",
     },
     evalValue: {
-      fontSize: RFValue(8),
+      fontSize: RFValue(7),
       textAlign: "center",
     },
   });

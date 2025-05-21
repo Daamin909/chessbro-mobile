@@ -15,20 +15,21 @@
 
 - [x] input username + pgn
 
-- [ ] GIF based thumbnails for Saved Games
-
 - [x] eval bar
 
-- [ ] move quality amount panel 
-  - [ ] main container
-  - [ ] move label + imgs
-  - [ ] quantity
+- [x] move quality amount panel
 
-- [ ] move info
-  - [ ] current move quality
-  - [ ] current move opening
+  - [x] main container
+  - [x] move label + imgs
+  - [x] quantity
 
-- [ ] hide input panel on game review
+- [x] move info
 
+  - [x] current move quality
+  - [x] current move opening
+
+- [x] hide input panel on game review
+
+- [ ] GIF based thumbnails for Saved Games
 - [ ] loading screen
-
+- [ ] different pages for report card and chessboard - Game Review

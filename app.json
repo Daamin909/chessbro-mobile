@@ -31,11 +31,7 @@
       [
         "expo-font",
         {
-          "fonts": [
-            "node_modules/@expo-google-fonts/varela-round/400Regular/VarelaRound_400Regular.ttf",
-            "node_modules/@expo-google-fonts/nova-round/400Regular/NovaRound_400Regular.ttf",
-            "node_modules/@expo-google-fonts/winky-rough/700Bold/WinkyRough_700Bold.ttf"
-          ]
+          "fonts": ["node_modules/@expo-google-fonts/inter/900Black/Inter_900Black.ttf"]
         }
       ],
       [
@@ -45,14 +41,5 @@
         }
       ]
     ],
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "8422afe6-ea5a-4d62-902c-ddffbd46d706"
-      }
-    },
-    "owner": "daamin101"
   }
 }
