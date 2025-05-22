@@ -6,7 +6,7 @@ import Toast from "react-native-toast-message";
 import validatePGN, { invalidPGN } from "../../scripts/fetch/validatePGN";
 import reviewGame from "../../scripts/fetch/reviewGame";
 
-const Input = ({ setPGN, setUnderReview, setMoveNumber }) => {
+const Input = ({ setPGN, setUnderReview, setMoveNumber, setIsSheetOpen }) => {
   const [option, setOption] = useState("pgn");
   const [input, setInput] = useState("");
   const [menuVisible, setMenuVisible] = useState(false);
@@ -27,6 +27,7 @@ const Input = ({ setPGN, setUnderReview, setMoveNumber }) => {
       }
       const reply = await reviewGame(input);
       setPGN(reply);
+      setIsSheetOpen(true);
       setMoveNumber(0);
       setUnderReview(true);
     }

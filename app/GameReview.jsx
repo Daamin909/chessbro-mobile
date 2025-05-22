@@ -1,5 +1,5 @@
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
 import Input from "../src/components/Input/Input";
 import Board from "../src/components/Board/Board";
 import Controls from "../src/components/Input/Controls";
@@ -10,10 +10,15 @@ import ReportCard from "../src/components/Review/ReportCard";
 import PlayerInfo from "../src/components/Players/PlayerInfo";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import defaultPGN from "../src/common/var/pgn";
+import Accuracy from "../src/components/Review/Accuracy";
+import PlayerIcon from "../src/components/Players/PlayerIcon";
+import { Button } from "react-native-paper";
 
 const GameReview = () => {
   const bottomSheetRef = useRef(null);
   const handleClosePress = () => bottomSheetRef.current.close();
+  const handleOpenPress = () => bottomSheetRef.current.expand();
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [PGN, setPGN] = useState(defaultPGN);
   const [evaluation, setEvaluation] = useState({
     type: "cp",
@@ -22,6 +27,13 @@ const GameReview = () => {
   const [underReview, setUnderReview] = useState(false);
   const [moveNumber, setMoveNumber] = useState(0);
   const [currentFEN, setCurrentFEN] = useState("");
+  useEffect(() => {
+    if (isSheetOpen) {
+      handleOpenPress();
+    } else {
+      handleClosePress();
+    }
+  }, [isSheetOpen]);
   useEffect(() => {
     try {
       setCurrentFEN(PGN.move_evaluations[moveNumber].fen);
@@ -36,6 +48,7 @@ const GameReview = () => {
             setPGN={setPGN}
             setUnderReview={setUnderReview}
             setMoveNumber={setMoveNumber}
+            setIsSheetOpen={setIsSheetOpen}
           />
         )}
         {underReview && (
@@ -80,9 +93,15 @@ const GameReview = () => {
           numberOfMoves={PGN.move_evaluations.length}
         />
       </ScrollView>
-      <BottomSheet ref={bottomSheetRef} snapPoints={["10%", "50%"]}>
+      <BottomSheet ref={bottomSheetRef}>
         <BottomSheetView style={styles.contentContainer}>
-          <Button title={"close"} onPress={handleClosePress}></Button>
+          <Button
+            mode="text"
+            icon={"close"}
+            onPress={handleClosePress}
+          ></Button>
+          <PlayerIcon playerInfo={PGN.info} />
+          <Accuracy accuracy={PGN.accuracy} />
           <ReportCard move_numbers={PGN.number_of_move_types} />
         </BottomSheetView>
       </BottomSheet>

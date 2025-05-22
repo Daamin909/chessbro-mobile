@@ -1,6 +1,5 @@
 import { StyleSheet, View } from "react-native";
 import MoveQuality from "./MoveQuality.jsx";
-import { RFValue } from "react-native-responsive-fontsize";
 const bestImage = require("../../../assets/images/quality_imgs/best_move.png");
 const goodImage = require("../../../assets/images/quality_imgs/good.png");
 const excellentImage = require("../../../assets/images/quality_imgs/excellent.png");
@@ -59,7 +58,7 @@ const ReportCard = ({ move_numbers }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    marginVertical: RFValue(10),
+    marginBottom: 10,
   },
 });
 export default ReportCard;
