@@ -17,8 +17,8 @@ const MoveQuality = ({ name, image, numberW, numberB }) => {
       height: RFValue(17),
     },
     text: {
-      paddingHorizontal: RFValue(40),
-      fontSize: RFValue(15),
+      fontSize: RFValue(18),
+      paddingHorizontal: "10%",
       color: "#e3eef4",
     },
     moveQuality: {
@@ -30,6 +30,7 @@ const MoveQuality = ({ name, image, numberW, numberB }) => {
     numbers: {
       display: "flex",
       justifyContent: "space-between",
+      alignItems: "center",
       flexDirection: "row",
     },
   });

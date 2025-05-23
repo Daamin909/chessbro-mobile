@@ -63,7 +63,7 @@ const EvalBar = ({ evaluation }) => {
   return (
     <View style={styles.evalbar}>
       <View style={styles.top}>
-        <Text style={{ color: "white", ...styles.evalValue }}>
+        <Text style={[{ color: "white" }, styles.evalValue]}>
           {value <= 0 && roundToHundredth(Math.abs(value / 100))}
         </Text>
       </View>

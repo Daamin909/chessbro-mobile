@@ -32,4 +32,5 @@
 
 - [ ] GIF based thumbnails for Saved Games
 - [ ] loading screen
-- [ ] different pages for report card and chessboard - Game Review
+- [x] different pages for report card and chessboard - Game Review
+  - [x] use bottom sheet library

@@ -12,13 +12,12 @@ import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import defaultPGN from "../src/common/var/pgn";
 import Accuracy from "../src/components/Review/Accuracy";
 import PlayerIcon from "../src/components/Players/PlayerIcon";
-import { Button } from "react-native-paper";
+import { Button, IconButton } from "react-native-paper";
 
 const GameReview = () => {
   const bottomSheetRef = useRef(null);
-  const handleClosePress = () => bottomSheetRef.current.close();
-  const handleOpenPress = () => bottomSheetRef.current.expand();
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const closeSheet = () => bottomSheetRef.current.close();
+  const openSheet = () => bottomSheetRef.current.expand();
   const [PGN, setPGN] = useState(defaultPGN);
   const [evaluation, setEvaluation] = useState({
     type: "cp",
@@ -27,13 +26,6 @@ const GameReview = () => {
   const [underReview, setUnderReview] = useState(false);
   const [moveNumber, setMoveNumber] = useState(0);
   const [currentFEN, setCurrentFEN] = useState("");
-  useEffect(() => {
-    if (isSheetOpen) {
-      handleOpenPress();
-    } else {
-      handleClosePress();
-    }
-  }, [isSheetOpen]);
   useEffect(() => {
     try {
       setCurrentFEN(PGN.move_evaluations[moveNumber].fen);
@@ -48,7 +40,7 @@ const GameReview = () => {
             setPGN={setPGN}
             setUnderReview={setUnderReview}
             setMoveNumber={setMoveNumber}
-            setIsSheetOpen={setIsSheetOpen}
+            openSheet={openSheet}
           />
         )}
         {underReview && (
@@ -92,14 +84,33 @@ const GameReview = () => {
           setMoveNumber={setMoveNumber}
           numberOfMoves={PGN.move_evaluations.length}
         />
-      </ScrollView>
-      <BottomSheet ref={bottomSheetRef}>
-        <BottomSheetView style={styles.contentContainer}>
+        {underReview && (
           <Button
-            mode="text"
+            size={24}
+            icon={"chevron-up"}
+            mode="contained"
+            onPress={openSheet}
+            style={styles.showButton}
+            textColor="#e3eef4"
+          >
+            Show Details
+          </Button>
+        )}
+      </ScrollView>
+      <BottomSheet
+        ref={bottomSheetRef}
+        index={-1}
+        handleStyle={styles.handleStyle}
+        handleIndicatorStyle={styles.handleIndicatorStyle}
+        enablePanDownToClose={true}
+      >
+        <BottomSheetView style={styles.contentContainer}>
+          <IconButton
+            size={24}
             icon={"close"}
-            onPress={handleClosePress}
-          ></Button>
+            onPress={closeSheet}
+            style={styles.closeButton}
+          ></IconButton>
           <PlayerIcon playerInfo={PGN.info} />
           <Accuracy accuracy={PGN.accuracy} />
           <ReportCard move_numbers={PGN.number_of_move_types} />
@@ -110,6 +121,12 @@ const GameReview = () => {
 };
 
 const styles = StyleSheet.create({
+  closeButton: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    zIndex: 1,
+  },
   gameReview: {
     backgroundColor: "#064162",
     display: "flex",
@@ -117,6 +134,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100%",
+  },
+  showButton: {
+    color: "#e333f4",
+  },
+  handleStyle: {
+    backgroundColor: "#085c8d",
   },
   boardContainer: {
     display: "flex",
@@ -127,7 +150,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 0,
     alignItems: "center",
-    backgroundColor: "#064162",
+    backgroundColor: "#085c8d",
   },
 });
 

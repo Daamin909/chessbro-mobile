@@ -6,18 +6,29 @@ const PlayerIcon = ({ playerInfo }) => {
   // TODO add profile icons
   return (
     <View style={styles.playerIcon}>
-      <Text style={{ ...styles.text, ...{ fontWeight: 500 } }}>Players</Text>
-      <View style={styles.numbers}>
-        <View style={styles.individualPlayer}>
-          <Text style={styles.text}>{white_player}</Text>
-          <Image source={defaultPfp} style={styles.image}></Image>
-          <Text style={styles.text}>{white_rating}</Text>
-        </View>
-        <View style={styles.individualPlayer}>
-          <Text style={styles.text}>{black_player}</Text>
-          <Image source={defaultPfp} style={styles.image}></Image>
-          <Text style={styles.text}>{black_rating}</Text>
-        </View>
+      <View style={styles.individualPlayer}>
+        <Text style={styles.text}>{white_player}</Text>
+        <Image
+          source={defaultPfp}
+          style={{ ...styles.image, ...{ borderColor: "white" } }}
+        ></Image>
+        <Text style={styles.text}>{white_rating}</Text>
+      </View>
+      <Text
+        style={{
+          ...styles.text,
+          ...{ fontWeight: 500, paddingHorizontal: 0 },
+        }}
+      >
+        VS
+      </Text>
+      <View style={styles.individualPlayer}>
+        <Text style={styles.text}>{black_player}</Text>
+        <Image
+          source={defaultPfp}
+          style={{ ...styles.image, ...{ borderColor: "black" } }}
+        ></Image>
+        <Text style={styles.text}>{black_rating}</Text>
       </View>
     </View>
   );
@@ -26,14 +37,15 @@ export default PlayerIcon;
 
 const styles = StyleSheet.create({
   text: {
-    paddingHorizontal: RFValue(40),
-    fontSize: RFValue(15),
+    paddingHorizontal: RFValue(50),
+    fontSize: RFValue(18),
     color: "#e3eef4",
-    marginVertical: RFValue(10)
+    marginVertical: RFValue(10),
+    fontWeight: 900,
   },
   playerIcon: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",
     marginVertical: RFValue(1),
@@ -49,8 +61,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   image: {
-    height: RFValue(40),
-    width: RFValue(40),
+    height: RFValue(60),
+    width: RFValue(60),
     borderRadius: 5,
+    borderWidth: RFValue(2),
   },
+
 });
